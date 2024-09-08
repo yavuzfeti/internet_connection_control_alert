@@ -1,7 +1,6 @@
 name: internet_connection_control_alert
 description: "Monitors real-time internet connectivity, provides offline mode support, and detects connection disruptions."
 version: 0.0.1
-author: yavuzfeti<yavuzfeti@outlook.com>
 homepage: https://github.com/yavuzfeti/internet_connection_control_alert
 
 environment:
