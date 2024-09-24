@@ -14,3 +14,7 @@
 - `CHANGELOG.md` file has been updated.
 - First release notes remain unchanged.
 - Future updates will include improvements and additional features.
+
+## [0.0.3] - 2024-09-24
+### Notes
+- Update internet_connection_checker
