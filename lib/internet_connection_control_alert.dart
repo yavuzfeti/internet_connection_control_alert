@@ -5,8 +5,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-final GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
-
 class Internet
 {
   static late StreamSubscription<List<ConnectivityResult>> _listener;
@@ -42,27 +40,27 @@ class Internet
     ),
   );
 
-  static void _control(bool barrier) async
+  static void _control(GlobalKey<NavigatorState> navKey, bool barrier) async
   {
     internet = await InternetConnectionChecker().hasConnection;
-    _dialog(internet,barrier);
+    _dialog(internet,barrier,navKey);
   }
 
-  static void delayStart({required int delay, bool? barrier, AlertDialog? alert})
+  static void delayStart(GlobalKey<NavigatorState> navKey, {required int delay, bool? barrier, AlertDialog? alert})
   {
-    Future.delayed(Duration(milliseconds: delay),() {start(alert: alert, barrier: barrier);});
+    Future.delayed(Duration(milliseconds: delay),() {start(navKey, alert: alert, barrier: barrier);});
   }
 
-  static void start({bool? barrier, AlertDialog? alert}) async
+  static void start(GlobalKey<NavigatorState> navKey, {bool? barrier, AlertDialog? alert}) async
   {
     alertDialog = alert ?? alertDialog;
-    _control(barrier ?? true);
+    _control(navKey, barrier ?? true);
     if(!_service)
     {
       _listener = Connectivity().onConnectivityChanged.listen((out)
       {
         internet = (out.contains(ConnectivityResult.mobile) || out.contains(ConnectivityResult.wifi));
-        _dialog(internet,barrier ?? true);
+        _dialog(internet,barrier ?? true,navKey);
       });
       _service = true;
     }
@@ -78,7 +76,7 @@ class Internet
     }
   }
 
-  static void _dialog(bool internet, bool barrier) async
+  static void _dialog(bool internet, bool barrier, GlobalKey<NavigatorState> navKey) async
   {
     if(!internet && !_dialogStatus)
     {

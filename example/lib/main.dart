@@ -3,7 +3,9 @@ import 'package:internet_connection_control_alert/internet_connection_control_al
 
 void main() {
 
-  Internet.delayStart(delay: 1000,barrier: false,alert: AlertDialog(
+  GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
+
+  Internet.delayStart(navKey, delay: 1000,barrier: false,alert: AlertDialog(
     backgroundColor: Colors.white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(25),
