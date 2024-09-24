@@ -18,3 +18,4 @@
 ## [0.0.3] - 2024-09-24
 ### Notes
 - Update internet_connection_checker
+- Add navKey variable
