@@ -19,3 +19,7 @@
 ### Notes
 - Update internet_connection_checker
 - Add navKey variable
+
+## [0.0.4] - 2025-02-02
+### Notes
+- Pub upgrade

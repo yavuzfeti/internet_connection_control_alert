@@ -1,6 +1,6 @@
 name: internet_connection_control_alert
 description: "Monitors real-time internet connectivity, provides offline mode support, and detects connection disruptions."
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/yavuzfeti/internet_connection_control_alert
 
 environment:
@@ -10,12 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  connectivity_plus: ^6.0.5
-  internet_connection_checker: ^1.0.0+1
+  connectivity_plus: ^6.1.2
+  internet_connection_checker: ^3.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 flutter:
