@@ -7,6 +7,8 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class Internet
 {
+  static final InternetConnectionChecker _internetConnectionChecker = InternetConnectionChecker.createInstance();
+
   static late StreamSubscription<List<ConnectivityResult>> _listener;
 
   static bool _service = false;
@@ -25,11 +27,9 @@ class Internet
       padding: const EdgeInsets.all(25),
       child: const Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        spacing: 20,
         children: [
           Icon(Icons.wifi_off_rounded,size: 50),
-          SizedBox(
-            height: 20,
-          ),
           Text(
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.black,fontSize: 15),
@@ -40,27 +40,27 @@ class Internet
     ),
   );
 
-  static void _control(GlobalKey<NavigatorState> navKey, bool barrier) async
+  static void _control(BuildContext context, bool barrier) async
   {
-    internet = await InternetConnectionChecker().hasConnection;
-    _dialog(internet,barrier,navKey);
+    bool internet = await _internetConnectionChecker.hasConnection;
+    _dialog(internet, barrier, context);
   }
 
-  static void delayStart(GlobalKey<NavigatorState> navKey, {required int delay, bool? barrier, AlertDialog? alert})
+  static void delayStart({required BuildContext context, required int delay, bool? barrier, AlertDialog? alert})
   {
-    Future.delayed(Duration(milliseconds: delay),() {start(navKey, alert: alert, barrier: barrier);});
+    Future.delayed(Duration(milliseconds: delay),() {start(context: context, alert: alert, barrier: barrier);});
   }
 
-  static void start(GlobalKey<NavigatorState> navKey, {bool? barrier, AlertDialog? alert}) async
+  static void start({required BuildContext context, bool? barrier, AlertDialog? alert}) async
   {
     alertDialog = alert ?? alertDialog;
-    _control(navKey, barrier ?? true);
+    _control(context, barrier ?? true);
     if(!_service)
     {
       _listener = Connectivity().onConnectivityChanged.listen((out)
       {
         internet = (out.contains(ConnectivityResult.mobile) || out.contains(ConnectivityResult.wifi));
-        _dialog(internet,barrier ?? true,navKey);
+        _dialog(internet,barrier ?? true, context);
       });
       _service = true;
     }
@@ -76,13 +76,13 @@ class Internet
     }
   }
 
-  static void _dialog(bool internet, bool barrier, GlobalKey<NavigatorState> navKey) async
+  static void _dialog(bool internet, bool barrier, BuildContext context) async
   {
     if(!internet && !_dialogStatus)
     {
       _dialogStatus = true;
       await showDialog(
-        context: navKey.currentState!.context,
+        context: context,
         barrierDismissible: barrier,
         builder: (aContext) => PopScope(
           canPop: barrier,
@@ -94,7 +94,7 @@ class Internet
     {
       if(_dialogStatus && internet)
       {
-        Navigator.pop(navKey.currentState!.context);
+        Navigator.pop(context);
         _dialogStatus = false;
       }
     }

@@ -17,9 +17,16 @@
 
 ## [0.0.3] - 2024-09-24
 ### Notes
-- Update internet_connection_checker
-- Add navKey variable
+- Update internet_connection_checker.
+- Add navKey variable.
 
 ## [0.0.4] - 2025-02-02
 ### Notes
+- Pub upgrade.
+
+## [0.0.5] - 2025-03-03
+### Notes
 - Pub upgrade
+- `context` is taken instead of `navkey`.
+- Instance created for hasconnection.
+- Now if you want to start from main you can start it using `Builder`.

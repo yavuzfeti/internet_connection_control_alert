@@ -1,0 +1,2 @@
+/Users/yavuzfeti/Documents/AndroidStudioProjects/internet_connection_control_alert/example/android/app/.cxx/RelWithDebInfo/6p5v6e4k/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/yavuzfeti/Documents/AndroidStudioProjects/internet_connection_control_alert/example/android/app/.cxx/RelWithDebInfo/6p5v6e4k/arm64-v8a/CMakeFiles/rebuild_cache.dir

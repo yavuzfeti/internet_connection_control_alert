@@ -1,0 +1,1 @@
+/Users/yavuzfeti/Documents/AndroidStudioProjects/internet_connection_control_alert/example/build/app/intermediates/cxx/RelWithDebInfo/6p5v6e4k/obj/arm64-v8a
